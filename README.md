@@ -28,16 +28,17 @@ print(Web:getBody({JSON = true}))
 ```lua
 local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
 
-local Web = RoWeb:new("https:/signuphere.com/api/signup", {
+local Web = RoWeb:new("http://signuphere.com/api/signup", {
     Method = "POST",
     Headers = {
-            ["accept"] = "application/json" 
+        ["Content-Type"] = "application/json",
     },
     Body = game:GetService("HttpService"):JSONEncode({
         Username = "User123",
         Password = "Secure_Password123"
     })
 })
+
 print(Web:getBody({JSON = true}))
 ```
 
