@@ -40,3 +40,12 @@ local Web = RoWeb:new("https:/signuphere.com/api/signup", {
 })
 print(Web:getBody({JSON = true}))
 ```
+
+## Getting request headers
+```lua
+local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
+
+local Web = RoWeb:new("https://example.com")
+
+print(Web:getHeaders())
+```
