@@ -1,4 +1,4 @@
-local RoWeb = {Version = "v0.0.2"}
+local RoWeb = {Version = "v0.1.2"}
 RoWeb.__index = RoWeb
 request = http_request or request or HttpPost or syn.request
 
@@ -17,6 +17,34 @@ function RoWeb:getHeaders()
     return self.data.Headers
 end
 
+
+function toJson(string)
+    local jsonData = nil
+    local s, err = pcall(function() 
+        local jsonTry = game:GetService("HttpService"):JSONDecode(string)  
+        jsonData = jsonTry
+    end)   
+    return jsonData or false
+end
+
+function RoWeb:getFingerprint() 
+    local fingerprint = {}
+   for _,v in pairs(toJson(self.data.Body).headers) do
+    if string.find(_:lower(), "fingerprint") then 
+    fingerprint[_] = v
+        else if string.find(_:lower(), "identifier") or string.find(_:lower(), "hwid")  then
+            fingerprint[_] = v
+        else if string.find(_:lower(), "agent") then
+            fingerprint[_] = v
+        else if string.find(_:lower(), "id") then
+            fingerprint[_] = v
+        end
+    end
+    end
+    end
+   end
+   return fingerprint
+end
 
 function RoWeb:getBody(options)
     if (options) and  (options.JSON) and options.JSON == true then 
