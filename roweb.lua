@@ -4,6 +4,7 @@ request = http_request or request or HttpPost or syn.request
 
 
 function RoWeb:new(url, options)
+    local options = options or {}
     options.Url = url
     local req = request(options)
     
