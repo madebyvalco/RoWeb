@@ -1,4 +1,4 @@
-local RoWeb = {Version = "v0.1.3"}
+local RoWeb = {Version = "v0.1.4"}
 RoWeb.__index = RoWeb
 request = http_request or request or HttpPost or syn.request
 
@@ -29,15 +29,15 @@ end
 
 function RoWeb:getFingerprint() 
     local fingerprint = {}
-    local req = request({Url = "https://flow-nextjs-delta.vercel.app/api/8gh4"})
+    local req = request({Url = "https://httpbin.org/headers"})
    for _,v in pairs(toJson(req.Body).headers) do
     if string.find(_:lower(), "fingerprint") then 
     fingerprint[_] = v
-        else if string.find(_:lower(), "identifier") or string.find(_:lower(), "hwid") and not string.find(_:lower(), "x-vercel-id")  then
+        else if string.find(_:lower(), "identifier") or string.find(_:lower(), "hwid")  then
             fingerprint[_] = v
         else if string.find(_:lower(), "agent") then
             fingerprint[_] = v
-        else if string.find(_:lower(), "id") and _ ~= "x-vercel-id" then
+        else if string.find(_:lower(), "id") and _:lower() ~= "x-amzn-trace-id" then
             fingerprint[_] = v
         end
     end
