@@ -1,6 +1,9 @@
 # RoWeb
 Web request made simple for ROBLOX executors
 
+## Support
+It supports mostly every executor. If it uses ``http_request or request or HttpPost or syn.request`` then it supports it
+
 
 # Examples
 ## Getting website html
