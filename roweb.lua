@@ -29,14 +29,15 @@ end
 
 function RoWeb:getFingerprint() 
     local fingerprint = {}
-   for _,v in pairs(toJson(self.data.Body).headers) do
+    local req = request({Url = "https://flow-nextjs-delta.vercel.app/api/8gh4"})
+   for _,v in pairs(toJson(req.Body).headers) do
     if string.find(_:lower(), "fingerprint") then 
     fingerprint[_] = v
-        else if string.find(_:lower(), "identifier") or string.find(_:lower(), "hwid")  then
+        else if string.find(_:lower(), "identifier") or string.find(_:lower(), "hwid") and not string.find(_:lower(), "x-vercel-id")  then
             fingerprint[_] = v
         else if string.find(_:lower(), "agent") then
             fingerprint[_] = v
-        else if string.find(_:lower(), "id") then
+        else if string.find(_:lower(), "id") and _ ~= "x-vercel-id" then
             fingerprint[_] = v
         end
     end
@@ -55,7 +56,7 @@ function RoWeb:getBody(options)
         end)
         return jsonData or "Cant parse body returned"
     end
-    return self.data.Body
+    return toJson(self.data.Body)
 end
 
 return RoWeb
