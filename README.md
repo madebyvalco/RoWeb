@@ -18,6 +18,6 @@ local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseVal
 
 local Web = RoWeb:new("https://www.uuidtools.com/api/generate/v1")
 
-print(Web:getBody({JSON = true))
+print(Web:getBody({JSON = true}))
 
 ```
