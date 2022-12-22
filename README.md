@@ -50,3 +50,16 @@ local Web = RoWeb:new("https://example.com")
 
 print(Web:getHeaders())
 ```
+
+## Getting fingerprint data
+Depending on the executor it will display different data
+```lua
+local Web = RoWeb:new("http://localhost:3000/api/test")
+
+
+for _,v in pairs(Web:getFingerprint()) do
+   print(_,v) 
+end
+```
+
+
