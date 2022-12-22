@@ -1,4 +1,4 @@
-local RoWeb = {Version = "v0.1.2"}
+local RoWeb = {Version = "v0.1.3"}
 RoWeb.__index = RoWeb
 request = http_request or request or HttpPost or syn.request
 
@@ -54,9 +54,10 @@ function RoWeb:getBody(options)
         local jsonTry = game:GetService("HttpService"):JSONDecode(self.data.Body)  
         jsonData = jsonTry
         end)
-        return jsonData or "Cant parse body returned"
+        if (err) then return error("Cant parse body") end
+        return jsonData 
     end
-    return toJson(self.data.Body)
+    return self.data.Body
 end
 
 return RoWeb
