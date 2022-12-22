@@ -16,7 +16,7 @@ print(Web:getBody())
 ```lua
 local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
 
-local Web = RoWeb:new("https://www.uuidtools.com/api/generate/v1")
+local Web = RoWeb:new("https://jsonplaceholder.typicode.com/comments?postId=1")
 
 print(Web:getBody({JSON = true}))
 
