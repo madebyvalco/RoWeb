@@ -60,10 +60,11 @@ local Web = RoWeb:new("http://localhost:3000/api/test")
 for _,v in pairs(Web:getFingerprint()) do
    print(_,v) 
 end
--- SYN X OUTPUT: 
+--[[ SYN X OUTPUT: 
 user-agent: synx/v2.21.0d
 syn-fingerprint: HIDDEN-FOR-EXAMPLE
 syn-user-identifier: HIDDEN-FOR-EXAMPLE
+]]--
 ```
 
 
