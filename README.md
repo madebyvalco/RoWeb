@@ -2,7 +2,7 @@
 Web request made simple for ROBLOX executors
 
 
-# Example
+# Examples
 ## Getting website html
 ```lua
 local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
