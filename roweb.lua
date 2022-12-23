@@ -1,4 +1,4 @@
-local RoWeb = {Version = "v0.2.4"}
+local RoWeb = {Version = "v0.3.4"}
 RoWeb.__index = RoWeb
 request = http_request or request or HttpPost or syn.request
 
@@ -29,6 +29,10 @@ function RoWeb:toJson(string)
         jsonData = jsonTry
     end)   
     return jsonData or false
+end
+
+function RoWeb:method()
+   return http_request or request or HttpPost or syn.request 
 end
 
 function RoWeb:getHeaders()
