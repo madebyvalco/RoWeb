@@ -1,4 +1,4 @@
-local RoWeb = {Version = "v0.1.4"}
+local RoWeb = {Version = "v0.2.4"}
 RoWeb.__index = RoWeb
 request = http_request or request or HttpPost or syn.request
 
@@ -13,11 +13,6 @@ function RoWeb:new(url, options)
     return _page
 end
 
-function RoWeb:getHeaders()
-    return self.data.Headers
-end
-
-
 function toJson(string)
     local jsonData = nil
     local s, err = pcall(function() 
@@ -25,6 +20,15 @@ function toJson(string)
         jsonData = jsonTry
     end)   
     return jsonData or false
+end
+
+
+function RoWeb:getHeaders()
+    return self.data.Headers
+end
+
+function RoWeb:getCookies()
+    return self.data.Cookies
 end
 
 function RoWeb:getFingerprint() 
