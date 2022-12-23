@@ -51,6 +51,15 @@ local Web = RoWeb:new("https://example.com")
 print(Web:getHeaders())
 ```
 
+## Getting request cookies
+```lua
+local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
+
+local Web = RoWeb:new("https://example.com")
+
+print(Web:getCookies())
+```
+
 ## Getting fingerprint data
 Depending on the executor it will display different data
 ```lua
