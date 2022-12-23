@@ -55,7 +55,7 @@ print(Web:getHeaders())
 Depending on the executor it will display different data
 ```lua
 local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
-local Web = RoWeb:new("http://localhost:3000/api/test")
+local Web = RoWeb:new("https://example.com")
 
 for _,v in pairs(Web:getFingerprint()) do
    print(_,v) 
