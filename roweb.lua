@@ -22,6 +22,14 @@ function toJson(string)
     return jsonData or false
 end
 
+function RoWeb:toJson(string)
+    local jsonData = nil
+    local s, err = pcall(function() 
+        local jsonTry = game:GetService("HttpService"):JSONDecode(string)  
+        jsonData = jsonTry
+    end)   
+    return jsonData or false
+end
 
 function RoWeb:getHeaders()
     return self.data.Headers
