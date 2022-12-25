@@ -63,7 +63,7 @@ function RoWeb:spy(callback)
          if (_G.ID ~= QID) then return __nc(self, ...) end
           local method = getnamecallmethod()
           if (instances[method]) then
-              callback({logged = {method = method, data = "game:"..method..'("'.. ... .. '")'}})
+              callback({method = method, data = "game:"..method..'("'.. ... .. '")'})
           end
         return __nc(self, ...)
      end))
@@ -73,10 +73,19 @@ function RoWeb:spy(callback)
         coroutine.wrap(function()
             local s, res = pcall(__rq, req)
             if (not s) then error("error played during getting response of hooking "..req.Url) end
-            callback({logged = {method = reqName, request = req, response = res}})
+            callback({method = reqName, req = req, res = res})
         end)()
         __rq(req)
     end))
+    if (syn) then
+
+        local WsBackup
+        WsBackup = hookfunction(syn.websocket.connect, function(...)
+            if (_G.ID ~= QID) then return WsBackup(...) end
+            callback({method = "syn.websocket.connect", extra = ...})
+            return WsBackup(...)
+        end)
+    end
 end
 
 function RoWeb:getFingerprint() 
