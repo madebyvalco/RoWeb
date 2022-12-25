@@ -1,4 +1,4 @@
-local RoWeb = {Version = "v1.3.4"}
+local RoWeb = {Version = "v1.4.4"}
 RoWeb.__index = RoWeb
 _G.ID = math.random(1000, 2000)
 
@@ -50,6 +50,8 @@ function RoWeb:getCookies()
 end
 
 function RoWeb:spy(callback)
+    local callbackType = type(callback)
+    if (callback == nil or callbackType:lower() ~= "function") then return error("callback function expected but got "..callbackType or nil) end
     local instances = {
         HttpGet = RoWeb.Version,
         HttpGetAsync = RoWeb.Version,
@@ -79,11 +81,11 @@ function RoWeb:spy(callback)
     end))
     if (syn) then
 
-        local __ws
-        __ws = hookfunction(syn.websocket.connect, function(...)
-            if (_G.ID ~= QID) then return __ws(...) end
-            callback({method = "syn.websocket.connect", extra = ...})
-            return __ws(...)
+        local wb
+        wb = hookfunction(syn.websocket.connect, function(...)
+            if (_G.ID ~= QID) then return wb(...) end
+            callback({method = "syn.websocket.connect", Url = ...})
+            return wb(...)
         end)
     end
 end
