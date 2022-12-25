@@ -79,11 +79,11 @@ function RoWeb:spy(callback)
     end))
     if (syn) then
 
-        local WsBackup
-        WsBackup = hookfunction(syn.websocket.connect, function(...)
-            if (_G.ID ~= QID) then return WsBackup(...) end
+        local __ws
+        __ws = hookfunction(syn.websocket.connect, function(...)
+            if (_G.ID ~= QID) then return __ws(...) end
             callback({method = "syn.websocket.connect", extra = ...})
-            return WsBackup(...)
+            return __ws(...)
         end)
     end
 end
