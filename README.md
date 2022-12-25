@@ -64,9 +64,8 @@ print(Web:getCookies())
 Depending on the executor it will display different data
 ```lua
 local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
-local Web = RoWeb:new("https://example.com")
 
-for _,v in pairs(Web:getFingerprint()) do
+for _,v in pairs(RoWeb:getFingerprint()) do
    print(_,v) 
 end
 --[[ SYN X OUTPUT: 
@@ -80,12 +79,23 @@ syn-user-identifier: HIDDEN-FOR-EXAMPLE
 
 ```lua
 local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
-local Web = RoWeb:new("http://example.com")
-local fingerprint = Web:getFingerprint()
+local fingerprint = RoWeb:getFingerprint()
 
 local synVersion = {}
 fingerprint["User-Agent"]:gsub("([^/]*),?", function(word) table.insert(synVersion, word) end)
 
 local synapseVersion = synVersion[3]
 print(synapseVersion)
+```
+## Using the spy
+RoWeb:spy(callback) returns information about any type of request types. http and websockets.
+
+```lua
+local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
+
+RoWeb:spy(function(data)
+    if (data.method == "syn.request") then
+        print(data.method.." called with url: "..data.req.Url)
+    end
+end)
 ```
