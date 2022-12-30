@@ -87,13 +87,13 @@ fingerprint["User-Agent"]:gsub("([^/]*),?", function(word) table.insert(synVersi
 local synapseVersion = synVersion[3]
 print(synapseVersion)
 ```
-## Using the spy
-RoWeb:spy(callback) returns information about any type of request types. http and websockets.
+## Using the synspy
+RoWeb:synspy(callback) returns information about any type of request types. http and websockets.
 
 ```lua
 local RoWeb = loadstring(game:HttpGet("https://raw.githubusercontent.com/RiseValco/RoWeb/main/roweb.lua", true))()
 
-RoWeb:spy(function(data)
+RoWeb:synspy(function(data)
     if (data.method == "syn.request") then
         print(data.method.." called with url: "..data.req.Url)
     end
