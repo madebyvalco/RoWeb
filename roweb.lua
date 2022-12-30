@@ -1,4 +1,4 @@
-local RoWeb = {Version = "v1.4.4"}
+local RoWeb = {Version = "v1.4.5"}
 RoWeb.__index = RoWeb
 _G.ID = math.random(1000, 2000)
 
@@ -49,7 +49,8 @@ function RoWeb:getCookies()
     return self.data.Cookies
 end
 
-function RoWeb:spy(callback)
+function RoWeb:synspy(callback)
+    if (not syn) then return error("executor not supported") end
     local callbackType = type(callback)
     if (callback == nil or callbackType:lower() ~= "function") then return error("callback function expected but got "..callbackType or nil) end
     local instances = {
